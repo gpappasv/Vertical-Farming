@@ -1,0 +1,8 @@
+# COAP CLIENT
+
+This firmware is built for an nRF9160 SoC. It's purpose is to handle the NB-IoT connectivity of the central node of the WSN. It's implementation is simple. It just receives data from the nRF52840 subsystem of nRF9160DK board, via uart and forwards those data to the cloud (coap) server. It also receives data/commands from the user. The architecture behind this is the following:
+coap client firmware subscribes to a coap resource. When the user changes the configuration (for example the temperature threshold where the fan is enabled/disabled) a notification is forwarded to the subscribers (to the coap client side). When the coap client receives data from the cloud, it simple forwards it to the nRF52840 side.
+In the nRF9160DK board, the nRF9160 subsystem controls all the board GPIOs. As the nRF52840 subsystem was designed to be the "master" of the network, nRF52840 forwards commands (via uart) related to which external devices to turn on or off.
+Someone could argue that the nRF52840 firmware should be built such as to just handle the BLE connections and receive data and forward everything to a "master" nRF9160. The current architecture thought is the more intuitive one. nRF9160 controls all the NB-IoT operations and nRF52840 controls all the BLE/WSN operations (which aligns with their capabilities).
+
+__TODO: need proper firmware module description to document the firmware correctly (WIP!)__

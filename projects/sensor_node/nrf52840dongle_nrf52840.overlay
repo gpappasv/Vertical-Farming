@@ -1,0 +1,56 @@
+// To get started, press Ctrl+Space to bring up the completion menu and view the available nodes.
+// For more help, browse the DeviceTree documentation at https://docs.zephyrproject.org/latest/guides/dts/index.html
+
+/ { 
+    aliases {
+    adcctrl = &adc;
+    ardspi = &spi3;
+	watchdog = &wdt;
+    button0 = &button0;
+    led0 = &led0_green;
+};
+
+dht22 {
+    compatible = "aosong,dht";
+    status = "okay";
+    label = "DHT22";
+    dio-gpios = <&gpio0 2 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+    dht22;
+};
+
+};
+
+&adc {
+	status = "okay";
+};
+
+// &spi3 {
+// 	status = "okay";
+// 	cs-gpios = <&gpio0 13 GPIO_ACTIVE_LOW>; /* P0.13 */
+//     sck-pin = <20>;
+//     mosi-pin = <17>;
+//     miso-pin = <15>;
+// 	bme280@0 {
+// 		compatible = "bosch,bme280";
+// 		reg = <0>;
+// 		label = "BME280_SPI";
+// 		spi-max-frequency = <1000000>; /* conservatively set to 1MHz */
+// 	};
+// };
+
+&uart0 {
+	status = "disabled";
+};
+
+&i2c0 {
+	compatible = "nordic,nrf-twi";
+	status = "okay";
+	sda-pin = <9>;
+	scl-pin = <10>;
+	clock-frequency = < I2C_BITRATE_STANDARD >;
+	bh1750: bh1750@23 {
+		compatible = "rohm,bh1750";
+		reg = <0x23>;
+		label = "light_sensor";
+	};
+};

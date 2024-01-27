@@ -1,5 +1,5 @@
 
-# verticalFarmingWSN
+# Vertical Farming Wireless Sensor Network
 
 This is the main repo for the vertical farming WSN solution.
 

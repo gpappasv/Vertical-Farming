@@ -40,7 +40,8 @@ Technical details of the system:
 - TODO: The python implementation of the cloud server is really bad (codewise). Almost unreadable, with many hardcoded things. This was due to limited available time and strict deadlines. Scrips should be reworked!!!
 
 **System Overview**
-![image](https://github.com/gpappasv/verticalFarmingWSN/assets/22116014/c843d6d6-b025-4285-bb85-81e3f56a632a)
+![image](https://github.com/gpappasv/verticalFarmingWSN/assets/22116014/4537abfa-1d95-43c6-a056-a653c649559f)
+
 
 
 

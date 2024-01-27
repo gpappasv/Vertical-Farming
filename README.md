@@ -40,6 +40,7 @@ Technical details of the system:
 - TODO: The python implementation of the cloud server is really bad (codewise). Almost unreadable, with many hardcoded things. This was due to limited available time and strict deadlines. Scrips should be reworked!!!
 
 **System Overview**
+Below there is a system overview providing the high level communication between the subsystems of the wireless sensor network.
 ![image](https://github.com/gpappasv/verticalFarmingWSN/assets/22116014/4537abfa-1d95-43c6-a056-a653c649559f)
 
 

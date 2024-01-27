@@ -23,15 +23,15 @@ Technical details of the system:
 
 **Sensor nodes**: 
 - The sensor nodes should be first configured by the user, in order to be connected to the central node. The user should configure the row_id of the sensor node to indicate which group is this sensor node part of. (values accepted 1 - 5)
-- The sensor nodes are built on nRF52840 SoC.
-- The communication with the central node happens via BLE protocol.
-- It's firmware is written using Zephyr RTOS.
+- The sensor nodes are built on **nRF52840 SoC**.
+- The communication with the central node happens via **BLE protocol**.
+- It's firmware is written using **Zephyr RTOS**.
 
 **Central node**:
-- The central node is implemented on nRF9160DK. The nRF52840 subsystem is the WSN master/coordinator. The BLE connection happens from this subsystem. The nRF9160 subsystem is just the communication middleman with the cloud. nRF9160 supports NB-IoT connectivity. nRF52840 subsystem forwards data to nRF9160, who then forwards them to the cloud server. Also the nRF9160 subsystem will receive data/commands from the cloud server, that will forward to the nRF52840 subsystem.
+- The central node is implemented on nRF9160DK. The nRF52840 subsystem is the WSN master/coordinator. The BLE connection happens from this subsystem. The nRF9160 subsystem is just the communication middleman with the cloud. nRF9160 supports **NB-IoT** connectivity. nRF52840 subsystem forwards data to nRF9160, who then forwards them to the cloud server. Also the nRF9160 subsystem will receive data/commands from the cloud server, that will forward to the nRF52840 subsystem.
 - Supports a theoretical maximum of 20 sensor node connections.
-- The communication with the cloud server happens via CoAP protocol.
-- It's firmware is written using Zephyr RTOS.
+- The communication with the cloud server happens via **CoAP protocol**.
+- It's firmware is written using **Zephyr RTOS**.
 
 **Cloud server**:
 - CoAP server is implemented in Python, using aiocoap library.

@@ -39,6 +39,11 @@ Technical details of the system:
 - The database serves as a data storage element, as well as the way for the CoAP server and web server to communicate with each other.
 - TODO: The python implementation of the cloud server is really bad (codewise). Almost unreadable, with many hardcoded things. This was due to limited available time and strict deadlines. Scrips should be reworked!!!
 
+**System Overview**
+![image](https://github.com/gpappasv/verticalFarmingWSN/assets/22116014/c843d6d6-b025-4285-bb85-81e3f56a632a)
+
+
+
 _TODO: This documentation just gives a brief overview of the system. A lot of things should be added for a complete documentation. **WIP!**_
 _TODO: Should provide instructions on how to deploy the project **WIP!**_
 _TODO: Should provide a demo **WIP!**_

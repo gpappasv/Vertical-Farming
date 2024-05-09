@@ -1,7 +1,7 @@
 // --- includes ----------------------------------------------------------------
-#include <drivers/adc.h>
-#include <logging/log.h>
-#include <zephyr.h>
+#include <zephyr/drivers/adc.h>
+#include <zephyr/logging/log.h>
+#include <zephyr/kernel.h>
 #include "../flash_system/flash_system.h"
 #include "../gpio/gpioif.h"
 #define ADC_RESOLUTION_SOIL_BITS 12

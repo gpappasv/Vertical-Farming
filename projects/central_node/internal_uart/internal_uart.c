@@ -1,10 +1,10 @@
 // --- includes ----------------------------------------------------------------
-#include <zephyr.h>
-#include <sys/printk.h>
-#include <drivers/uart.h>
+#include <zephyr/kernel.h>
+#include <zephyr/sys/printk.h>
+#include <zephyr/drivers/uart.h>
 #include <string.h>
 #include <stdint.h>
-#include <logging/log.h>
+#include <zephyr/logging/log.h>
 #include "internal_uart.h"
 #include "message_parsing.h"
 #include "../../common/com_protocol/com_protocol.h"
@@ -18,7 +18,7 @@ LOG_MODULE_REGISTER(internal_uart_m);
 #define MESSAGE_LENGTH_UNCONFIGURED 0
 #define RESET_VALUE 0
 #define UART_SEND_SEM_TIMEOUT_MS 1500
-
+#define UARTDEV DT_NODELABEL(uart1)
 // --- static variables definitions --------------------------------------------
 static const struct device *uart_dev; //Figure out why you should/should not use static
 static uint8_t uart_buf[UART_BUFFER];
@@ -83,7 +83,7 @@ static void uart_cb(const struct device *x, void *user_data)
 void internal_uart_init(void)
 {
     // get uart device
-    uart_dev = device_get_binding("UART_1");
+    uart_dev = DEVICE_DT_GET(UARTDEV);
 
     // log in case of uart device error
     if (!uart_dev)

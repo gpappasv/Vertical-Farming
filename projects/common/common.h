@@ -2,8 +2,8 @@
 #define COMMON_H
 
 // --- includes ----------------------------------------------------------------
-#include "bluetooth/uuid.h"
-#include <bluetooth/conn.h>
+#include "zephyr/bluetooth/uuid.h"
+#include <zephyr/bluetooth/conn.h>
 
 // --- defines -----------------------------------------------------------------
 // --- ble services ---

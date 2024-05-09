@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include <stdio.h>
 
-#include <logging/log.h>
+#include <zephyr/logging/log.h>
 
 // --- logging settings --------------------------------------------------------
 LOG_MODULE_DECLARE(ble_m);

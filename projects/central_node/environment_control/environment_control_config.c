@@ -2,7 +2,7 @@
 #include "environment_control_config.h"
 #include "../flash_system/flash_system.h"
 #include "../../common/common.h"
-#include <logging/log.h>
+#include <zephyr/logging/log.h>
 
 // --- logging settings --------------------------------------------------------
 LOG_MODULE_DECLARE(environment_control_m);

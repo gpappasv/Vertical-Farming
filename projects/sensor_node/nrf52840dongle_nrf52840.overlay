@@ -5,7 +5,7 @@
     aliases {
     adcctrl = &adc;
     ardspi = &spi3;
-	watchdog = &wdt;
+    watchdog = &wdt;
     button0 = &button0;
     led0 = &led0_green;
 };
@@ -21,36 +21,60 @@ dht22 {
 };
 
 &adc {
-	status = "okay";
+    status = "okay";
 };
 
-// &spi3 {
-// 	status = "okay";
-// 	cs-gpios = <&gpio0 13 GPIO_ACTIVE_LOW>; /* P0.13 */
-//     sck-pin = <20>;
-//     mosi-pin = <17>;
-//     miso-pin = <15>;
-// 	bme280@0 {
-// 		compatible = "bosch,bme280";
-// 		reg = <0>;
-// 		label = "BME280_SPI";
-// 		spi-max-frequency = <1000000>; /* conservatively set to 1MHz */
-// 	};
-// };
+&spi3 {
+    compatible = "nordic,nrf-spim";
+    status = "okay";
+    cs-gpios = <&gpio0 13 GPIO_ACTIVE_LOW>; /* P0.13 */
+    pinctrl-0 = <&spi3_default>;
+    pinctrl-1 = <&spi3_sleep>;
+    pinctrl-names = "default", "sleep";
+    bme280@0 {
+        compatible = "bosch,bme280";
+        reg = <0>;
+        spi-max-frequency = <1000000>; /* conservatively set to 1MHz */
+    };
+};
 
 &uart0 {
-	status = "disabled";
+    status = "disabled";
 };
 
 &i2c0 {
-	compatible = "nordic,nrf-twi";
-	status = "okay";
-	sda-pin = <9>;
-	scl-pin = <10>;
-	clock-frequency = < I2C_BITRATE_STANDARD >;
-	bh1750: bh1750@23 {
-		compatible = "rohm,bh1750";
-		reg = <0x23>;
-		label = "light_sensor";
-	};
+    compatible = "nordic,nrf-twi";
+    status = "okay";
+    clock-frequency = < I2C_BITRATE_STANDARD >;
+    bh1750: bh1750@23 {
+        compatible = "rohm,bh1750";
+        reg = <0x23>;
+    };
+};
+
+&pinctrl {
+    spi3_default: spi3_default {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK, 0, 20)>,
+                    <NRF_PSEL(SPIM_MOSI, 0, 17)>,
+                    <NRF_PSEL(SPIM_MISO, 0, 15)>;
+        };
+    };
+    spi3_sleep: spi3_sleep {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK, 0, 20)>,
+                    <NRF_PSEL(SPIM_MOSI, 0, 17)>,
+                    <NRF_PSEL(SPIM_MISO, 0, 15)>;
+        };
+    };
+};
+
+&temp {
+    status = "okay";
+};
+
+&i2c0_default {
+    group1 {
+        psels = <NRF_PSEL(TWIM_SDA, 0, 9)>, <NRF_PSEL(TWIM_SCL, 0, 10)>;
+    };
 };

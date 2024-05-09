@@ -2,16 +2,18 @@
 #define FLASH_SYSTEM_H
 
 // --- includes ----------------------------------------------------------------
-#include <zephyr.h>
-#include <sys/reboot.h>
-#include <device.h>
+#include <zephyr/kernel.h>
+#include <zephyr/sys/reboot.h>
+#include <zephyr/device.h>
 #include <string.h>
-#include <drivers/flash.h>
-#include <storage/flash_map.h>
-#include <fs/nvs.h>
+#include <zephyr/drivers/flash.h>
+#include <zephyr/storage/flash_map.h>
+#include <zephyr/fs/nvs.h>
 
 // --- defines -----------------------------------------------------------------
-#define STORAGE_NODE_LABEL storage
+#define NVS_PARTITION		storage_partition
+#define NVS_PARTITION_DEVICE	FIXED_PARTITION_DEVICE(NVS_PARTITION)
+#define NVS_PARTITION_OFFSET	FIXED_PARTITION_OFFSET(NVS_PARTITION)
 
 // --- functions declarations --------------------------------------------------
 void flash_system_init(void);

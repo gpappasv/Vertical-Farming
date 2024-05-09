@@ -1,14 +1,13 @@
 // --- includes ----------------------------------------------------------------
 #include "ble_measurement_service.h"
 #include "ble_conn_control.h"
-#include "../bme_280/temperature_humidity_sensor.h"
+#include "../temp_hum/temperature_humidity_sensor.h"
 #include "../../common/common.h"
 #include "../gpio/gpioif.h"
 #include "../soil_moisture/soil_moisture.h"
-#include "../light_sensor/light_sensor.h"
-#include <logging/log.h>
+#include <zephyr/logging/log.h>
 
-#include <bluetooth/addr.h>
+#include <zephyr/bluetooth/addr.h>
 
 // --- logging settings --------------------------------------------------------
 LOG_MODULE_REGISTER(ble_m);
@@ -56,7 +55,7 @@ static ssize_t on_read_temperature(struct bt_conn *conn, const struct bt_gatt_at
 #ifndef SW_SENSOR_EMULATION_MODE
     struct sensor_value temperature;
 
-    // Take bme280 measurement
+    // Take temp hum sensor measurement
     measure_temperature();
     // Fetch the measurement on a local variable
     temperature = get_temperature_measurement();
@@ -80,7 +79,7 @@ static ssize_t on_read_humidity(struct bt_conn *conn, const struct bt_gatt_attr 
 #ifndef SW_SENSOR_EMULATION_MODE
     struct sensor_value humidity;
 
-    // Take bme280 measurement
+    // Take temp hum sensor measurement
     measure_humidity();
     // Fetch the measurement on a local variable
     humidity = get_humidity_measurement();
@@ -101,7 +100,7 @@ static ssize_t on_read_light_exposure(struct bt_conn *conn, const struct bt_gatt
 {
     int32_t light_exposure;
 #ifndef SW_SENSOR_EMULATION_MODE
-    const struct device *bh1750_device = get_bh1750_device();
+    const struct device *bh1750_device = DEVICE_DT_GET_ANY(rohm_bh1750);
     struct sensor_value lux;
     sensor_sample_fetch_chan(bh1750_device, SENSOR_CHAN_LIGHT);
     sensor_channel_get(bh1750_device, SENSOR_CHAN_LIGHT, &lux);

@@ -13,17 +13,17 @@
 #include "../../common/common.h"
 #include "../measurements/measurements_fsm.h"
 
-#include <zephyr.h>
+#include <zephyr/kernel.h>
 #include <zephyr/types.h>
 #include <stddef.h>
 #include <errno.h>
-#include <logging/log.h>
+#include <zephyr/logging/log.h>
 
-#include <sys/printk.h>
-#include <bluetooth/hci.h>
-#include <bluetooth/conn.h>
-#include <bluetooth/gatt.h>
-#include <sys/byteorder.h>
+#include <zephyr/sys/printk.h>
+#include <zephyr/bluetooth/hci.h>
+#include <zephyr/bluetooth/conn.h>
+#include <zephyr/bluetooth/gatt.h>
+#include <zephyr/sys/byteorder.h>
 
 // --- defines -----------------------------------------------------------------
 // TODO: 600 might be causing an issue where the central node is informed about
@@ -165,7 +165,7 @@ static void connected(struct bt_conn *conn, uint8_t conn_err)
 
     if (conn_err)
     {
-        log_addr = log_strdup(addr);
+        log_addr = strdup(addr);
         LOG_INF("Failed to connect to %s (%u)", log_addr, conn_err);
 
         bt_conn_unref(conn);
@@ -197,7 +197,7 @@ static void disconnected(struct bt_conn *conn, uint8_t reason)
     char addr[BT_ADDR_LE_STR_LEN];
     char *log_addr;
     bt_addr_le_to_str(bt_conn_get_dst(conn), addr, sizeof(addr));
-    log_addr = log_strdup(addr);
+    log_addr = strdup(addr);
     LOG_INF("Disconnected: %s, reason: %d", log_addr, reason);
 
     // --- remove connection ---

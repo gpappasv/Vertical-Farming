@@ -1,7 +1,7 @@
 // --- includes ----------------------------------------------------------------
-#include <drivers/gpio.h>
-#include <logging/log.h>
-#include <zephyr.h>
+#include <zephyr/drivers/gpio.h>
+#include <zephyr/logging/log.h>
+#include <zephyr/kernel.h>
 #include "../../common/com_protocol/com_protocol.h"
 
 // --- defines -----------------------------------------------------------------

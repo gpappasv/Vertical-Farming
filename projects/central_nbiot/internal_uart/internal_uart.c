@@ -1,10 +1,10 @@
 // --- includes ----------------------------------------------------------------
-#include <zephyr.h>
-#include <sys/printk.h>
-#include <drivers/uart.h>
+#include <zephyr/kernel.h>
+#include <zephyr/sys/printk.h>
+#include <zephyr/drivers/uart.h>
 #include <string.h>
 #include <stdint.h>
-#include <logging/log.h>
+#include <zephyr/logging/log.h>
 #include "internal_uart.h"
 #include "../../common/com_protocol/com_protocol.h"
 #include "message_parsing.h"

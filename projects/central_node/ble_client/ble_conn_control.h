@@ -4,9 +4,9 @@
 // --- includes ----------------------------------------------------------------
 #include "ble_connection_data.h"
 
-#include <bluetooth/uuid.h>
-#include <bluetooth/bluetooth.h>
-#include <bluetooth/conn.h>
+#include <zephyr/bluetooth/uuid.h>
+#include <zephyr/bluetooth/bluetooth.h>
+#include <zephyr/bluetooth/conn.h>
 
 // --- defines -----------------------------------------------------------------
 #define BT_CONN_LE_CREATE_LOW_POWER \

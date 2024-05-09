@@ -11,11 +11,11 @@
 #include "ble_conn_control.h"
 #include "ble_characteristic_control.h"
 
-#include <zephyr.h>
-#include <logging/log.h>
-#include <sys/printk.h>
-#include <bluetooth/bluetooth.h>
-#include <smf.h>
+#include <zephyr/kernel.h>
+#include <zephyr/logging/log.h>
+#include <zephyr/sys/printk.h>
+#include <zephyr/bluetooth/bluetooth.h>
+#include <zephyr/smf.h>
 #include <stdbool.h>
 
 // --- logging settings --------------------------------------------------------

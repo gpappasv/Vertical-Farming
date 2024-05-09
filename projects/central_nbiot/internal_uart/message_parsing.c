@@ -2,8 +2,8 @@
 #include "message_parsing.h"
 #include "../inventory/inventory.h"
 #include "../../common/com_protocol/com_protocol.h"
-#include <logging/log.h>
-#include "sys/crc.h"
+#include <zephyr/logging/log.h>
+#include <zephyr/sys/crc.h>
 #include "../coap_client/coap_client.h"
 #include "internal_uart.h"
 #include "../timestamp_module/timestamp.h"

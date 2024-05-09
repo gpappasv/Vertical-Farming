@@ -1,7 +1,7 @@
 // --- includes ----------------------------------------------------------------
-#include <zephyr.h>
-#include <drivers/watchdog.h>
-#include <logging/log.h>
+#include <zephyr/kernel.h>
+#include <zephyr/drivers/watchdog.h>
+#include <zephyr/logging/log.h>
 #include "watchdog_timer.h"
 
 // --- logging -----------------------------------------------------------------

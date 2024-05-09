@@ -1,10 +1,11 @@
 // --- includes ----------------------------------------------------------------
-#include <drivers/gpio.h>
-#include <logging/log.h>
-#include <zephyr.h>
+#include <zephyr/drivers/gpio.h>
+#include <zephyr/logging/log.h>
+#include <zephyr/kernel.h>
 
 // --- defines -----------------------------------------------------------------
 #define SOIL_MOISTURE_GPIO_ENABLE_PIN 13
+#define GPIO1 DT_NODELABEL(gpio1)
 // --- logging -----------------------------------------------------------------
 LOG_MODULE_REGISTER(gpio_interface_m);
 
@@ -14,8 +15,7 @@ LOG_MODULE_REGISTER(gpio_interface_m);
 
 static const struct device *get_gpio_dev(void)
 {
-
-    return device_get_binding("GPIO_1");
+    return DEVICE_DT_GET(GPIO1);
 }
 
 // --- function definitions -------------------------------------------
@@ -30,7 +30,11 @@ static const struct device *get_gpio_dev(void)
 void gpio_interface_init(void)
 {
     const struct device *gpio_dev = get_gpio_dev();
-
+    if(gpio_dev == NULL)
+    {
+        LOG_ERR("GPIO dev is null");
+        return;
+    }
     /* Soil Moisture GPIO Enable --> Pin P01.8 */
     gpio_pin_configure(gpio_dev, SOIL_MOISTURE_GPIO_ENABLE_PIN, GPIO_OUTPUT);
     /* GPIO High drive mode */
@@ -46,7 +50,11 @@ void gpio_interface_init(void)
 void gpio_enable_soil_moisture(void)
 {
     const struct device *gpio_dev = get_gpio_dev();
-
+    if(gpio_dev == NULL)
+    {
+        LOG_ERR("GPIO dev is null");
+        return;
+    }
     gpio_pin_set(gpio_dev, SOIL_MOISTURE_GPIO_ENABLE_PIN, GPIO_OUT_PIN8_High);
 }
 
@@ -58,7 +66,11 @@ void gpio_enable_soil_moisture(void)
 void gpio_disable_soil_moisture(void)
 {
     const struct device *gpio_dev = get_gpio_dev();
-
+    if(gpio_dev == NULL)
+    {
+        LOG_ERR("GPIO dev is null");
+        return;
+    }
     gpio_pin_set(gpio_dev, SOIL_MOISTURE_GPIO_ENABLE_PIN, GPIO_OUT_PIN8_Low);
 }
 

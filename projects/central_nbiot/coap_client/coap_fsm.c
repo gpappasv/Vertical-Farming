@@ -3,16 +3,16 @@
 #include "coap_client.h"
 #include "../internal_uart/internal_uart.h"
 #include <stdbool.h>
-#include <zephyr.h>
+#include <zephyr/kernel.h>
 #include "../inventory/inventory.h"
-#include <smf.h>
-#include <logging/log.h>
-#include <random/rand32.h>
-#include <net/coap.h>
-#include <net/socket.h>
+#include <zephyr/smf.h>
+#include <zephyr/logging/log.h>
+#include <zephyr/random/random.h>
+#include <zephyr/net/coap.h>
+#include <zephyr/net/socket.h>
 #include "coap_message_parsing.h"
 #include <modem/lte_lc.h>
-#include "nrf_modem_at.h"
+#include <nrf_modem_at.h>
 #include "../timestamp_module/timestamp.h"
 
 // --- logging settings --------------------------------------------------------
@@ -100,9 +100,9 @@ static void coap_client_init_run(void *o)
     {
         // Register observe on the userpayload resource
         // TODO: GPA: Uncomment the following 3 lines in order to observe again
-        // char obs_resource[] = "userpayload";
-        // coap_observe(obs_resource, strlen(obs_resource));
-        // initialize_observe_renew();
+        char obs_resource[] = "userpayload";
+        coap_observe(obs_resource, strlen(obs_resource));
+        initialize_observe_renew();
         // -----------------------------------------
         // Set next state -> go to wait state until send event comes
         smf_set_state(SMF_CTX(&coap_fsm_user_object), &coap_client_states[COAP_CLIENT_WAIT]);
@@ -218,8 +218,7 @@ static void lte_handler(const struct lte_lc_evt *const evt)
             k_event_post(&uart_communication_events, COAP_NBIOT_RECONNECT_EVT);
         }
         else if((evt->nw_reg_status == LTE_LC_NW_REG_REGISTERED_HOME)
-            || (evt->nw_reg_status == LTE_LC_NW_REG_REGISTERED_ROAMING)
-            || (evt->nw_reg_status == LTE_LC_NW_REG_REGISTERED_EMERGENCY))
+            || (evt->nw_reg_status == LTE_LC_NW_REG_REGISTERED_ROAMING))
         {
             // LOG_INF("Reconnected to NB-IoT Network! %d", evt->nw_reg_status);
         }
@@ -331,5 +330,5 @@ K_THREAD_DEFINE(coap_fsm_id, STACKSIZE, coap_fsm, NULL, NULL, NULL,
                 COAP_FSM_PRIORITY, 0, 0);
 
 // Observe loop - Commenting out to save data?? TODO: Dont know if it actually saves data
-// K_THREAD_DEFINE(coap_observe_id, COAP_OBS_STACKSIZE, coap_observe_loop, NULL, NULL, NULL,
-//                COAP_OBS_PRIORITY, 0, 0);
+K_THREAD_DEFINE(coap_observe_id, COAP_OBS_STACKSIZE, coap_observe_loop, NULL, NULL, NULL,
+               COAP_OBS_PRIORITY, 0, 0);

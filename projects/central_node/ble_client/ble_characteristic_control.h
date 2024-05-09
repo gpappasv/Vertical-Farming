@@ -3,9 +3,9 @@
 
 // --- includes ----------------------------------------------------------------
 #include <stdint.h>
-#include <zephyr.h>
-#include <bluetooth/gatt.h>
-#include <bluetooth/uuid.h>
+#include <zephyr/kernel.h>
+#include <zephyr/bluetooth/gatt.h>
+#include <zephyr/bluetooth/uuid.h>
 
 // --- defines -----------------------------------------------------------------
 // --- MEASUREMENT SERVICE INFO ---

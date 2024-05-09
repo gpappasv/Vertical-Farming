@@ -4,11 +4,11 @@
 #include "../../common/common.h"
 #include "../soil_moisture/soil_moisture.h"
 
-#include <logging/log.h>
+#include <zephyr/logging/log.h>
 #include <stdint.h>
 
-#include <bluetooth/addr.h>
-#include <bluetooth/gatt.h>
+#include <zephyr/bluetooth/addr.h>
+#include <zephyr/bluetooth/gatt.h>
 
 // --- logging settings --------------------------------------------------------
 LOG_MODULE_DECLARE(ble_m);
@@ -91,10 +91,8 @@ static ssize_t on_read_soil_dry_calib(struct bt_conn *conn, const struct bt_gatt
 
     // Dummy return can be used as an error code maybe. For now just return the calib value for debug
     int32_t dummy_return = 0;
-
     // Call function to calibrate soil moisture sensor when dry
     dummy_return = soil_moisture_dry_calibrate();
-
     return bt_gatt_attr_read(conn, attr, buf, len, offset, &dummy_return,
                              sizeof(dummy_return));
 }
@@ -105,10 +103,8 @@ static ssize_t on_read_soil_wet_calib(struct bt_conn *conn, const struct bt_gatt
 
     // Dummy return can be used as an error code maybe. For now just return the calib value for debug
     int32_t dummy_return = 0;
-
     // Call function to calibrate soil moisture sensor when wet
     dummy_return = soil_moisture_wet_calibrate();
-
     return bt_gatt_attr_read(conn, attr, buf, len, offset, &dummy_return,
                              sizeof(dummy_return));
 }

@@ -1,13 +1,13 @@
 // --- includes ----------------------------------------------------------------
 #include "environment_control_fsm.h"
 #include "environment_control_config.h"
-#include "sys/crc.h"
+#include <zephyr/sys/crc.h>
 #include "../../common/com_protocol/com_protocol.h"
 #include "../../common/common.h"
 #include "../internal_uart/internal_uart.h"
-#include <smf.h>
-#include <logging/log.h>
-#include <zephyr.h>
+#include <zephyr/smf.h>
+#include <zephyr/logging/log.h>
+#include <zephyr/kernel.h>
 
 // --- defines -----------------------------------------------------------------
 // 10% offset of the user requested soil moisture threshold

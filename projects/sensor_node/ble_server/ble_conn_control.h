@@ -4,11 +4,11 @@
 // --- includes ----------------------------------------------------------------
 #include <stdint.h>
 
-#include <bluetooth/bluetooth.h>
-#include <bluetooth/hci.h>
-#include <bluetooth/conn.h>
-#include <bluetooth/uuid.h>
-#include <bluetooth/gatt.h>
+#include <zephyr/bluetooth/bluetooth.h>
+#include <zephyr/bluetooth/hci.h>
+#include <zephyr/bluetooth/conn.h>
+#include <zephyr/bluetooth/uuid.h>
+#include <zephyr/bluetooth/gatt.h>
 
 // --- defines -----------------------------------------------------------------
 #define DEVICE_NAME CONFIG_BT_DEVICE_NAME

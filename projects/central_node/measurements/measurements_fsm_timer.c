@@ -1,10 +1,7 @@
 // --- includes ----------------------------------------------------------------
 #include "measurements_fsm_timer.h"
 #include "../measurements/measurements_fsm.h"
-#include "zephyr.h"
-// --- defines -----------------------------------------------------------------
-// TODO: Probably set it from html page
-#define MEASUREMENT_PERIOD_IN_SEC 20
+#include <zephyr/kernel.h>
 
 // --- static variables definitions --------------------------------------------
 static struct k_timer measurements_fsm_timer;

@@ -2,7 +2,7 @@
 #include "coap_message_parsing.h"
 #include "../../common/com_protocol/com_protocol.h"
 #include "../internal_uart/internal_uart.h"
-#include <logging/log.h>
+#include <zephyr/logging/log.h>
 
 // --- logging settings --------------------------------------------------------
 LOG_MODULE_DECLARE(coap_m);

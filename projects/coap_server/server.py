@@ -14,6 +14,10 @@ class RowMeanData(resource.Resource):
 
     async def render_put(self, request):
         MessageParsing().row_mean_data_parsing(request.payload)
+        remote_endpoint = request.remote.hostinfo
+        # Writing the IPv6 address to a text file
+        with open("remote_endpoint.txt", "w") as file:
+            file.write(remote_endpoint)
         return aiocoap.Message(code=aiocoap.CHANGED, payload=request.payload)
 
 class UserPayload(resource.ObservableResource):

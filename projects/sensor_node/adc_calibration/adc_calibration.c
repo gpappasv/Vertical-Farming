@@ -1,7 +1,7 @@
 // --- includes ----------------------------------------------------------------
-#include <drivers/adc.h>
-#include <logging/log.h>
-#include <zephyr.h>
+#include <zephyr/drivers/adc.h>
+#include <zephyr/logging/log.h>
+#include <zephyr/kernel.h>
 
 #define ADC_RESOLUTION_CALIBRATION_BITS 12
 #define ADC_CALIBRATION_CHANNEL 3

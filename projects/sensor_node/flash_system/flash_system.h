@@ -2,16 +2,19 @@
 #define FLASH_SYSTEM_H
 
 // --- includes ----------------------------------------------------------------
-#include <zephyr.h>
-#include <sys/reboot.h>
-#include <device.h>
+#include <zephyr/kernel.h>
+#include <zephyr/sys/reboot.h>
+#include <zephyr/device.h>
 #include <string.h>
-#include <drivers/flash.h>
-#include <storage/flash_map.h>
-#include <fs/nvs.h>
+#include <zephyr/drivers/flash.h>
+#include <zephyr/storage/flash_map.h>
+#include <zephyr/fs/nvs.h>
 
 // --- defines -----------------------------------------------------------------
-#define STORAGE_NODE_LABEL storage
+// --- defines -----------------------------------------------------------------
+#define NVS_PARTITION		storage_partition
+#define NVS_PARTITION_DEVICE	FIXED_PARTITION_DEVICE(NVS_PARTITION)
+#define NVS_PARTITION_OFFSET	FIXED_PARTITION_OFFSET(NVS_PARTITION)
 #define DEVICE_CONFIGURATION_FLASH_KEY 0
 #define SOIL_MOISTURE_DRY_CONFIG_FLASH_KEY 1
 #define SOIL_MOISTURE_WET_CONFIG_FLASH_KEY 2

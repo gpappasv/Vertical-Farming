@@ -4,7 +4,7 @@
 // --- includes ----------------------------------------------------------------
 #include <stdint.h>
 #include <stdbool.h>
-#include <zephyr.h>
+#include <zephyr/kernel.h>
 
 // --- functions declarations -------------------------------------------------
 void init_adc_calibration_timer(void);

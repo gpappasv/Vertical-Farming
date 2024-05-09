@@ -1,30 +1,28 @@
 // --- includes ----------------------------------------------------------------
-#include <zephyr.h>
+#include <zephyr/kernel.h>
 
-#include <logging/log.h>
-#include <drivers/gpio.h>
-#include <zephyr.h>
-#include "../bme_280/temperature_humidity_sensor.h"
+#include <zephyr/logging/log.h>
+#include <zephyr/drivers/gpio.h>
+#include <zephyr/kernel.h>
+#include "../temp_hum/temperature_humidity_sensor.h"
 #include "../ble_server/ble_measurement_service.h"
 #include "../ble_server/ble_conn_control.h"
 #include "../soil_moisture/soil_moisture.h"
 #include "../battery_measurement/battery_measurement.h"
-#include "../light_sensor/light_sensor.h"
 #include "../adc_calibration/adc_calibration.h"
 #include "../timer_module/timer_module.h"
 #include "../watchdog_timer/watchdog_timer.h"
 #include "../flash_system/flash_system.h"
 #include "../gpio/gpioif.h"
-#include <pm/device.h>
-#include <smf.h>
-#include <toolchain.h>
+#include <zephyr/pm/device.h>
+#include <zephyr/smf.h>
+#include <zephyr/toolchain.h>
 
-#ifndef SENSOR_DONGLE
-#include <mgmt/mcumgr/smp_bt.h>
-#include "os_mgmt/os_mgmt.h"
-#include "img_mgmt/img_mgmt.h"
+#ifdef CONFIG_MCUMGR
+#include <zephyr/mgmt/mcumgr/transport/smp_bt.h>
+#include <zephyr/mgmt/mcumgr/grp/os_mgmt/os_mgmt.h>
+#include <zephyr/mgmt/mcumgr/grp/img_mgmt/img_mgmt.h>
 #endif
-
 
 // --- logging settings --------------------------------------------------------
 LOG_MODULE_REGISTER(main_m);
@@ -130,14 +128,15 @@ static void setup_clear_id_button(void)
 // --- CONFIGURE STATE
 static void configure_state_entry(void *o)
 {
-#ifndef SENSOR_DONGLE
+#ifdef CONFIG_MCUMGR
     os_mgmt_register_group();
     img_mgmt_register_group();
     smp_bt_register();
 #endif
 
-    // const static struct device *bme_spi_device = DEVICE_DT_GET_ANY(nordic_nrf_spim);
-
+#ifdef BME_280
+    const static struct device *bme_spi_device = DEVICE_DT_GET_ANY(nordic_nrf_spim);
+#endif // BME_280
     k_sem_init(&configure_done_sem, 0, 1);
     // --- system init ---
     init_watchdog();
@@ -150,9 +149,9 @@ static void configure_state_entry(void *o)
     // GPIO Interface init
     gpio_interface_init();
 #ifndef SW_SENSOR_EMULATION_MODE
-    if (!init_bme280())
+    if (!init_temp_hum_sensor())
     {
-        // If bme280 is not ready, perform software reset
+        // If temp hum is not ready, perform software reset
         sys_reboot(SYS_REBOOT_WARM);
     }
 #endif
@@ -164,7 +163,9 @@ static void configure_state_entry(void *o)
     init_adc_calibration_timer();
     start_adc_calibration_timer(K_SECONDS(1), K_SECONDS(30));
 
-    // pm_device_action_run(bme_spi_device, PM_DEVICE_ACTION_SUSPEND);
+#ifdef BME_280
+    pm_device_action_run(bme_spi_device, PM_DEVICE_ACTION_SUSPEND);
+#endif //BME_280
 }
 static void configure_state_run(void *o)
 {

@@ -5,7 +5,7 @@
 #include "measurements/measurements_fsm_timer.h"
 
 // --- functions definitions ---------------------------------------------------
-void main(void)
+int main(void)
 {
     // Init watchdog init
     init_watchdog();
@@ -14,4 +14,5 @@ void main(void)
     flash_system_init();
     init_measurements_fsm_timer();
     start_measurements_fsm_timer();
+    return 0;
 }

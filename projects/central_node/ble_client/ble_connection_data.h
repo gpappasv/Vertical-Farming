@@ -4,8 +4,8 @@
 // --- includes ----------------------------------------------------------------
 #include <stdbool.h>
 #include "../../common/common.h"
-#include <zephyr.h>
-#include <bluetooth/gatt.h>
+#include <zephyr/kernel.h>
+#include <zephyr/bluetooth/gatt.h>
 
 // --- defines -----------------------------------------------------------------
 #define BLE_MAX_CONNECTIONS 20

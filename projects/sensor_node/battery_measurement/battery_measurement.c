@@ -1,7 +1,7 @@
 // --- includes ----------------------------------------------------------------
-#include <drivers/adc.h>
-#include <logging/log.h>
-#include <zephyr.h>
+#include <zephyr/drivers/adc.h>
+#include <zephyr/logging/log.h>
+#include <zephyr/kernel.h>
 
 #define ADC_RESOLUTION_BATTERY_BITS 12
 #define ADC_BATTERY_MEASUREMENT_CHANNEL 2 /* P0.04 */

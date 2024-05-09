@@ -1,7 +1,6 @@
 // --- includes ----------------------------------------------------------------
-#include <logging/log.h>
+#include <zephyr/logging/log.h>
 #include "timer_module.h"
-#include "../light_sensor/light_sensor.h"
 #include "../adc_calibration/adc_calibration.h"
 
 // --- logging settings --------------------------------------------------------

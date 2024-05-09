@@ -1,6 +1,6 @@
 // --- includes ----------------------------------------------------------------
 #include "com_protocol.h"
-#include "sys/crc.h"
+#include <zephyr/sys/crc.h>
 #include <string.h>
 
 

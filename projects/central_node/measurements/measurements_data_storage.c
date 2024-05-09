@@ -6,7 +6,7 @@
 #include "../ble_client/ble_characteristic_control.h"
 #include "../../common/common.h"
 
-#include "logging/log.h"
+#include <zephyr/logging/log.h>
 
 // --- logging settings --------------------------------------------------------
 LOG_MODULE_DECLARE(measurements_m);

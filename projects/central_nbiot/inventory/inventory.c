@@ -2,8 +2,8 @@
 #include "inventory.h"
 #include "../../common/common.h"
 #include <stdint.h>
-#include <bluetooth/conn.h>
-#include <logging/log.h>
+#include <zephyr/bluetooth/conn.h>
+#include <zephyr/logging/log.h>
 
 // --- logging settings --------------------------------------------------------
 LOG_MODULE_REGISTER(inventory_m);

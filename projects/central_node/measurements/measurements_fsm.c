@@ -14,10 +14,10 @@
 #include "../../common/com_protocol/com_protocol.h"
 #include "../environment_control/environment_control_config.h"
 #include "../environment_control/environment_control_fsm.h"
-#include <zephyr.h>
+#include <zephyr/kernel.h>
 #include "measurements_fsm_timer.h"
-#include <smf.h>
-#include <logging/log.h>
+#include <zephyr/smf.h>
+#include <zephyr/logging/log.h>
 
 // --- logging settings --------------------------------------------------------
 LOG_MODULE_REGISTER(measurements_m);

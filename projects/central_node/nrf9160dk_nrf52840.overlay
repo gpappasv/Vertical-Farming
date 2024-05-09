@@ -4,10 +4,8 @@
 	compatible = "nordic,nrf-uarte";
 	current-speed = <115200>;
 	status = "okay";
-	tx-pin = <17>;
-	rx-pin = <20>;
-	rts-pin = <15>;
-	cts-pin = <22>;
+    pinctrl-0 = <&uart1_default>;
+    pinctrl-names = "default";
 };
 
 &nrf_interface_pins_0_2_routing {
@@ -27,4 +25,29 @@
 	watchdog = &wdt;
 };
 
+};
+
+// TODO:GPA: I think it is not needed now. Remove or restore after testing (Commented out after transitioning to sdk 2.6)
+// &interface_to_nrf9160 {
+//     gpio-map = <0 0 &gpio0 17 0>,
+//                <1 0 &gpio0 20 0>,
+//                <2 0 &gpio0 15 0>,
+//                <3 0 &gpio0 22 0>,
+//                <4 0 &gpio1 4 0>,
+//                <5 0 &gpio1 2 0>,
+//                <6 0 &gpio1 13 0>,
+//                <7 0 &gpio1 11 0>,
+//                <8 0 &gpio1 15 0>,
+//                <9 0 &gpio0 18 0>;
+// };
+
+&pinctrl {
+    uart1_default: uart1_default {
+        group1 {
+            psels = <NRF_PSEL(UART_TX, 0, 17)>,
+                    <NRF_PSEL(UART_RX, 0, 20)>,
+                    <NRF_PSEL(UART_RTS, 0, 15)>,
+                    <NRF_PSEL(UART_CTS, 0, 22)>;
+        };
+    };
 };

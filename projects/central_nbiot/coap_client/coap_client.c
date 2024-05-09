@@ -1,10 +1,10 @@
 // --- includes ----------------------------------------------------------------
-#include <net/coap.h>
-#include <net/socket.h>
-#include <zephyr.h>
-#include <logging/log.h>
+#include <zephyr/net/coap.h>
+#include <zephyr/net/socket.h>
+#include <zephyr/kernel.h>
+#include <zephyr/logging/log.h>
 #include "coap_client.h"
-#include <random/rand32.h>
+#include <zephyr/random/random.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>

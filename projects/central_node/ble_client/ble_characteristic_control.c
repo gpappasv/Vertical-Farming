@@ -12,7 +12,7 @@
 #include "ble_connection_data.h"
 #include "../measurements/measurements_data_storage.h"
 #include "../../common/common.h"
-#include <logging/log.h>
+#include <zephyr/logging/log.h>
 
 // --- logging settings --------------------------------------------------------
 LOG_MODULE_DECLARE(ble_m);

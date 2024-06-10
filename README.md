@@ -3,9 +3,9 @@
 
 This is the main repo for the vertical farming WSN solution.
 
-*build*: This is the stub folder where build artifacts (intermediate, e.g. object files and final, e.g. binaries) are generated. This folder is git-ignored and can be used to direct the outcome of build scripts (see folder "scripts" hereunder).
+***projects***: all original vertical farming solution code.
 
-*projects*: all original vertical farming solution code.
+***scripts***: helper scripts.
 
 # Project description
 This is a wireless sensor network project for farming installation monitoring and automation.

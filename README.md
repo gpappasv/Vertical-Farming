@@ -1,3 +1,6 @@
+# Description of repository
+This is a repository where a Bluetooth Low Energy wireless sensor network is being developed.
+The sensor network is being built using the Nordic's nRF chips.
 
 # Vertical Farming Wireless Sensor Network
 

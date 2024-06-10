@@ -33,6 +33,8 @@ Technical details of the system:
 - The communication with the cloud server happens via **CoAP protocol**.
 - It's firmware is written using **Zephyr RTOS**.
 
+Newer version of Central node is now released. The central node is now implemented on the nRF7002DK board. This board has WiFi capabilities. Now the central node duties are carried out by just one firmware that merges both the central wireless sensor network functionalities (to handle the BLE network) and the cloud communication, via WiFi.
+
 **Cloud server**:
 - CoAP server is implemented in Python, using aiocoap library.
 - The webserver is a simple flask python webserver.
